@@ -1,5 +1,5 @@
 # hentai_downloader
-An automatic image downloader from a predefined list of sources. Optional check at the end to remove empty images.
+An automatic image downloader from a predefined list of sources. Optional check at the end to remove empty images sourced from Reddit and Imgur.
 
 # TODOs
 - ~~Make progress bar instead of cascading download results.~~ Dropped progress bar in favor of constantly updating stdouts
