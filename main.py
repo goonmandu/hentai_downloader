@@ -2,10 +2,9 @@ import os
 import requests
 from PIL import Image
 import threading
-import time
 
 SUBDIRECTORY = "downloads"
-timeout_seconds = int(input("HTTP request timeout seconds (10 is recommends): "))
+timeout_seconds = int(input("HTTP connection timeout in seconds (20 is recommended): "))
 num_of_threads = int(input("Number of download threads to use (25 is recommended): "))
 print()
 header = {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) "
@@ -38,14 +37,12 @@ def download_image(threadno):
         print(f"Downloading image #{total_downloaded + 1} ({progress_percent}%)    ", end="\r")
         try:
             f = open(f"{SUBDIRECTORY}/{file_name}", 'wb')
-            response = requests.get(url, headers=header, timeout=(5, timeout_seconds))
+            response = requests.get(url, headers=header, timeout=(timeout_seconds, timeout_seconds))
             f.write(response.content)
             f.close()
         except:
             url_errors += 1
         total_downloaded += 1
-        time.sleep(0.5)
-
 
 for i in range(num_of_threads):
     t = threading.Thread(target=download_image, args=(i,))
