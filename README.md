@@ -6,5 +6,5 @@ An automatic image downloader from a predefined list of sources. Optional check 
 - Implement proper optional check instead of making the user raise a `KeyboardInterrupt`.
 - Make it run 2nd and 3rd passes to download failed images.
 
-# Screenshot:
+# Screenshot (outdated):
 ![unknown](https://user-images.githubusercontent.com/61984863/149247712-bc310bd4-b7a5-4b64-923c-e4f4bb987ba1.png)
