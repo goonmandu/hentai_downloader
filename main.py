@@ -4,7 +4,7 @@ from PIL import Image
 import threading
 
 SUBDIRECTORY = "downloads"
-INPUT_FILE = "imgs_original.txt"
+INPUT_FILE = "imgs.txt"
 
 timeout_seconds = int(input("HTTP connection timeout in seconds (20 is recommended): "))
 num_of_threads = int(input("Number of download threads to use (25 is recommended): "))
