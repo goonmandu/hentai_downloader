@@ -4,7 +4,7 @@ from PIL import Image
 import threading
 
 SUBDIRECTORY = "downloads"
-INPUT_FILE = "imgs.txt"
+INPUT_FILE = "imgs_original.txt"
 
 timeout_seconds = int(input("HTTP connection timeout in seconds (20 is recommended): "))
 num_of_threads = int(input("Number of download threads to use (25 is recommended): "))
@@ -38,10 +38,10 @@ def download_image(threadno):
         progress_percent = round(total_downloaded / len(links) * 100, 2)
         print(f"Downloading image #{total_downloaded + 1} ({progress_percent}%)    ", end="\r")
         try:
-            f = open(f"{SUBDIRECTORY}/{file_name}", 'wb')
+            d_img = open(f"{SUBDIRECTORY}/{file_name}", 'wb')
             response = requests.get(url, headers=header, timeout=(timeout_seconds, timeout_seconds))
-            f.write(response.content)
-            f.close()
+            d_img.write(response.content)
+            d_img.close()
         except:
             url_errors += 1
         total_downloaded += 1
