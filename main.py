@@ -4,6 +4,8 @@ from PIL import Image
 import threading
 
 SUBDIRECTORY = "downloads"
+INPUT_FILE = "imgs_original.txt"
+
 timeout_seconds = int(input("HTTP connection timeout in seconds (20 is recommended): "))
 num_of_threads = int(input("Number of download threads to use (25 is recommended): "))
 print()
@@ -14,7 +16,7 @@ header = {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) "
 if not os.path.isdir(SUBDIRECTORY):
     os.mkdir(SUBDIRECTORY)
 
-with open("imgs.txt") as f:
+with open(INPUT_FILE) as f:
     links = f.readlines()
     links = [link.strip("\n") for link in links if link.startswith("https://")]
 
@@ -33,7 +35,7 @@ def download_image(threadno):
         except IndexError:
             break
         file_name = url.split("/")[-1]
-        progress_percent = round((total_downloaded) / len(links) * 100, 2)
+        progress_percent = round(total_downloaded / len(links) * 100, 2)
         print(f"Downloading image #{total_downloaded + 1} ({progress_percent}%)    ", end="\r")
         try:
             f = open(f"{SUBDIRECTORY}/{file_name}", 'wb')
@@ -43,6 +45,7 @@ def download_image(threadno):
         except:
             url_errors += 1
         total_downloaded += 1
+
 
 for i in range(num_of_threads):
     t = threading.Thread(target=download_image, args=(i,))
@@ -56,7 +59,9 @@ for t in threads:
 
 print("\nAll files downloaded.")
 print(f"Success rate: {round(((len(links) - url_errors) / len(links)) * 100, 2)}% ({len(links) - url_errors} successful, {url_errors} failed)")
-input("\nPress [Enter] to delete empty images. Press [Ctrl] + [C] to skip this check and exit the script.")
+if input("\nPress [Enter] to delete empty images. To skip this check, write any text and then press [Enter]. "):
+    print("Empty image check skipped.")
+    exit()
 print("Deleting empty images...\n")
 
 file_number = 0
