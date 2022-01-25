@@ -3,7 +3,7 @@ An automatic image downloader from a predefined list of sources. Optional check 
 
 # TODOs
 - ~~Make progress bar instead of cascading download results.~~ Dropped progress bar in favor of constantly updating stdouts
-- Implement proper optional check instead of making the user raise a `KeyboardInterrupt`.
+- ~~Implement proper optional check instead of making the user raise a `KeyboardInterrupt`.~~ Done. See if there is a better way to exit the program without using `exit()`.
 - Make it run 2nd and 3rd passes to download failed images.
 
 # Screenshot:
