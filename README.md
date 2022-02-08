@@ -1,6 +1,10 @@
 # hentai_downloader
 An automatic image downloader from a predefined list of sources. Optional check at the end to remove empty images sourced from Reddit and Imgur.
 
+# Dependencies
+`pip install pillow`  
+`pip install requests`
+
 # TODOs
 - [x] Change cascade-style stdout to one line of updates.  
 - [x] Implement proper optional check instead of making the user raise a `KeyboardInterrupt`.  
